@@ -1,0 +1,17 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "nrwlAngularJestCypress",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "nrwl-angular-jest-cypress",
+      "kebab-case"
+    ]
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "nrwl-angular-jest-cypress": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/nrwl-angular-jest-cypress",
+      "sourceRoot": "apps/nrwl-angular-jest-cypress/src",
+      "prefix": "nrwl-angular-jest-cypress",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/nrwl-angular-jest-cypress",
+            "index": "apps/nrwl-angular-jest-cypress/src/index.html",
+            "main": "apps/nrwl-angular-jest-cypress/src/main.ts",
+            "polyfills": "apps/nrwl-angular-jest-cypress/src/polyfills.ts",
+            "tsConfig": "apps/nrwl-angular-jest-cypress/tsconfig.app.json",
+            "assets": [
+              "apps/nrwl-angular-jest-cypress/src/favicon.ico",
+              "apps/nrwl-angular-jest-cypress/src/assets"
+            ],
+            "styles": ["apps/nrwl-angular-jest-cypress/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/nrwl-angular-jest-cypress/src/environments/environment.ts",
+                  "with": "apps/nrwl-angular-jest-cypress/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "nrwl-angular-jest-cypress:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "nrwl-angular-jest-cypress:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "nrwl-angular-jest-cypress:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/nrwl-angular-jest-cypress/tsconfig.app.json",
+              "apps/nrwl-angular-jest-cypress/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/nrwl-angular-jest-cypress/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/nrwl-angular-jest-cypress/jest.config.js",
+            "tsConfig": "apps/nrwl-angular-jest-cypress/tsconfig.spec.json",
+            "setupFile": "apps/nrwl-angular-jest-cypress/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "nrwl-angular-jest-cypress-e2e": {
+      "root": "apps/nrwl-angular-jest-cypress-e2e",
+      "sourceRoot": "apps/nrwl-angular-jest-cypress-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/nrwl-angular-jest-cypress-e2e/cypress.json",
+            "tsConfig": "apps/nrwl-angular-jest-cypress-e2e/tsconfig.e2e.json",
+            "devServerTarget": "nrwl-angular-jest-cypress:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "nrwl-angular-jest-cypress:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/nrwl-angular-jest-cypress-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/nrwl-angular-jest-cypress-e2e/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "nrwl-angular-jest-cypress"
+}
