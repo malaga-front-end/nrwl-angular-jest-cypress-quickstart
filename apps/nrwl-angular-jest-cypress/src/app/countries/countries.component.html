@@ -1,0 +1,6 @@
+<div>
+  <ul>
+    <li *ngFor="let country of countries$ | async" (click)="selectCountry(country.city)">{{ country.country }}</li>
+  </ul>
+</div>
+
