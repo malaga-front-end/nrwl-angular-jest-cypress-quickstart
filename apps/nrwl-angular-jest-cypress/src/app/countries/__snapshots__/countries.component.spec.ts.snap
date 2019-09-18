@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CountriesComponent should render component 1`] = `
+<nrwl-angular-jest-cypress-countries
+  cityService={[Function CityService]}
+  countries$={[Function Observable]}
+  countriesService={[Function CountriesService]}
+>
+  <div>
+    <ul>
+      
+      <li>
+        Spain
+      </li>
+      <li>
+        France
+      </li>
+    </ul>
+  </div>
+</nrwl-angular-jest-cypress-countries>
+`;

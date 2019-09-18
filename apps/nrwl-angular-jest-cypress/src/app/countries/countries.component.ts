@@ -18,6 +18,6 @@ export class CountriesComponent implements OnInit {
   }
 
   selectCountry(city: string) {
-    this.cityService.city.emit(city);
+    this.cityService.emitCity(city);
   }
 }

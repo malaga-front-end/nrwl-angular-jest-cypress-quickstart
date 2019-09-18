@@ -1,9 +1,18 @@
-import { getGreeting } from '../support/app.po';
+import { getCountries, getCity } from '../support/app.po';
 
-describe('nrwl-angular-jest-cypress', () => {
-  beforeEach(() => cy.visit('/'));
+describe('app', () => {
+  beforeEach(() => {
+    cy.server()           // enable response stubbing
+    cy.route({
+      method: 'GET',      // Route all GET requests
+      url: '/countries',    // that have a URL that matches '/users/*'
+      response: [{country: 'Spain', city: 'Madrid'}]        // and force the response to be: []
+    })
+    cy.visit('/')
+  });
 
-  it('should display welcome message', () => {
-    getGreeting().contains('Welcome to nrwl-angular-jest-cypress!');
+  it('should display city when clicking on country', () => {
+    getCountries().eq(0).click();
+    getCity().contains('Madrid');
   });
 });

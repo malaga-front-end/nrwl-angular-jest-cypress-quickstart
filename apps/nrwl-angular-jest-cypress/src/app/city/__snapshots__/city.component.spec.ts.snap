@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CityComponent should render component properly 1`] = `
+<nrwl-angular-jest-cypress-city
+  cityService={[Function CityService]}
+>
+  <div
+    style="position: fixed; top: 0; right: 20px;"
+  >
+    
+    <h1>
+       Madrid 
+    </h1>
+  </div>
+</nrwl-angular-jest-cypress-city>
+`;
