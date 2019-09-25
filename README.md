@@ -106,7 +106,7 @@ This command will generate a folder called ``countries`` inside ``src/app``, and
 ``countries.component.ts`` - An empty typescript class called ``CountriesComponent`` properly annotated as a ``@Component`` and already linked to its template and styles.
 ``countries.component.html`` - An empty template that represents the view of the component.
 ``countries.component.css`` - To style the component. 
-``countries.component.spec.ts``- Unit tests for the component already initialized for its first dummy tests
+``countries.component.spec.ts``- Unit tests for the component already initialized for its first test
 
 To use the component, it should be declared in ``app.module.ts``. Angular CLI also does this task automatically for you! Go to ``app.module.ts`` and check that the component has been automatically added to ``declarations``.
 
@@ -118,9 +118,61 @@ Do you want to see your brand new component in your browser? Check the ``selecto
 
 If you go back to the browser tab that is showing our app, you will see that it has automatically reloaded to show your new component! 
 
-* ng g service countries/countries
-* Añadir el HttpClientModule al root module (resolver problema con dependencias)
-* Ir al servicio, importar el HttpClient y hacer el get y devolver el observable
+### Our first service: CountriesService
+
+Now that we have our CountriesComponent in place, let's populate it! We need to create a server for this porpuse. We will create a method inside it that will do a GET request to retrieve the data that we need. Use the following command:
+
+```
+ng g service countries/countries
+```
+
+This command will generate all the files inside ``countries``component, containing:
+
+``countries.service.ts`` - An empty typescript class called ``CountriesService`` properly annotated as a ``@Injectable`` to mark a class as available to be provided and injected as a dependency.
+``countries.service.spec.ts``- Unit tests for the service already initialized for its first test.
+
+To perform the HTTP call, we first need to import an Angular module called ``HttpClientModule``. Go to ``app.module.ts`` and add it inside ``imports``.
+
+```
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+*import { HttpClientModule } from '@angular/common/http';*
+
+import { AppComponent } from './app.component';
+import { CountriesComponent } from './countries/countries.component';
+
+@NgModule({
+  declarations: [AppComponent, CountriesComponent],
+  imports: [BrowserModule, *HttpClientModule*],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+Now, go to ``CountriesComponent`` and import ``HttpClient`` service. This is the service that will allow you to perform an HTTP call. Additionally, create a method ``getCountries`` to do a GET to the provided url.
+
+```
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CountriesService {
+
+  private readonly url = 'http://localhost:3000/countries';
+
+  constructor(private httpClient: HttpClient) { }
+
+  public getCountries() {
+    return this.httpClient.get(this.url);
+  }
+}
+```
+
+
+* JSON SERVER ANADIRLO COMO APARTADO OPCIONAL
 * Añadir el servicio al componente, y asignar el resultado a un observable
 * Añadir un ngFor con un async y comentar lo que vamos haciendo
 * CREAR UN COMPONENTE CITY Y ENVIAR LA CIUDAD EN LA QUE HACEMOS CLICK CON EVENT EMITTER
