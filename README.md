@@ -198,7 +198,7 @@ export class CountriesComponent implements OnInit {
 }
 ```
 
-Now, we will edit our template in ``countries.component.html`` to show the results:
+Now, we will edit our template in ``countries.component.html`` to show the results:
 
 ```
 <ul>
@@ -218,7 +218,7 @@ Create the new component using this command:
 
 ```
 ng g component city
-```
+```
 
 Add the content of the template:
 
@@ -246,7 +246,7 @@ Now that we have both components created, we will create our ``SharedService`` t
 ng g service shared
 ```
 
-We will create a ``Subject``, transform it into an ``Observable`` and create methods to emit the value and get the observable stream.
+We will create a ``Subject``, transform it into an ``Observable`` and create methods to emit the value and get the observable stream.
 
 ```
 import { Injectable, EventEmitter } from '@angular/core';
