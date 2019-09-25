@@ -1,3 +1,5 @@
+[countries-app]: assets/countries-app.png
+
 # nrwl-angular-jest-cypress-quickstart
 Nrwl+Angular+Jest+Cypress Quickstart. Create your app in less than 1 hour!
 
@@ -118,7 +120,7 @@ Do you want to see your brand new component in your browser? Check the ``selecto
 
 If you go back to the browser tab that is showing our app, you will see that it has automatically reloaded to show your new component! 
 
-### Our first service: CountriesService
+## Adding our Services
 
 Now that we have our CountriesComponent in place, let's populate it! We need to create a server for this porpuse. We will create a method inside it that will do a GET request to retrieve the data that we need. Use the following command:
 
@@ -136,14 +138,14 @@ To perform the HTTP call, we first need to import an Angular module called ``Htt
 ```
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-*import { HttpClientModule } from '@angular/common/http';*
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CountriesComponent } from './countries/countries.component';
 
 @NgModule({
   declarations: [AppComponent, CountriesComponent],
-  imports: [BrowserModule, *HttpClientModule*],
+  imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
@@ -171,11 +173,157 @@ export class CountriesService {
 }
 ```
 
+### Injecting the service into the component
 
-* JSON SERVER ANADIRLO COMO APARTADO OPCIONAL
-* Añadir el servicio al componente, y asignar el resultado a un observable
-* Añadir un ngFor con un async y comentar lo que vamos haciendo
-* CREAR UN COMPONENTE CITY Y ENVIAR LA CIUDAD EN LA QUE HACEMOS CLICK CON EVENT EMITTER
+Now that we have our service ready, we need to inject it into our component and call ``getCountries`` from there when initializing the component. 
+
+```
+import { Component, OnInit } from '@angular/core';
+import { CountriesService } from './countries.service';
+
+@Component({
+  selector: 'app-countries',
+  templateUrl: './countries.component.html',
+  styleUrls: ['./countries.component.css']
+})
+export class CountriesComponent implements OnInit {
+
+  countries$: any;
+
+  constructor(private countriesService: CountriesService) { }
+
+  ngOnInit() {
+    this.countries$ = this.countriesService.getCountries();
+  }
+}
+```
+
+Now, we will edit our template in ``countries.component.html`` to show the results:
+
+```
+<ul>
+    <li *ngFor="let country of countries$ | async">{{ country.country }}</li>
+</ul>
+```
+
+If you go now to your browser, you should see a list of countries.
+
+## Component interaction
+
+We want the following behaviour: when clicking on a country, we want to show its capital.
+
+To do that, we need to introduce a second component called ``CityComponent``, and a service to communicate them: we will call it ``SharedService`` for learning purposes. ``CountriesComponent`` will use this service to emit an event with the name of the city, and ``CityComponent`` will use it to listen to that event.
+
+Create the new component using this command:
+
+```
+ng g component city
+```
+
+Add the content of the template:
+
+```
+<div class="city">
+  <h1>
+    {{ city }}
+  </h1>
+</div>
+```
+
+Add some styles to allocate it on top right of the screen:
+
+```
+.city {
+    position: fixed; 
+    top: 0; 
+    right: 20px;
+}
+```
+
+Now that we have both components created, we will create our ``SharedService`` to communicate them:
+
+```
+ng g service shared
+```
+
+We will create a ``Subject``, transform it into an ``Observable`` and create methods to emit the value and get the observable stream.
+
+```
+import { Injectable, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SharedService {
+   // Observable string sources
+   private citySource = new Subject<string>();
+ 
+   // Observable string streams
+   city$ = this.citySource.asObservable();
+ 
+   // Service message commands
+   emitCity(city: string) {
+     this.citySource.next(city);
+   }
+
+   getCity() {
+     return this.city$;
+   }
+}
+```
+
+With our service ready to emit and receive values, we can edit both components to finish our app.
+
+First we will edit ``countries.component.ts`` to add a method to emit the value.
+
+countries.component.ts
+```
+export class CountriesComponent implements OnInit {
+
+  ...
+
+  constructor(private countriesService: CountriesService, private cityService: CityService) { }
+
+  ...
+
+  selectCountry(city: string) {
+    this.cityService.emitCity(city);
+  }
+}
+```
+
+And after that, we will associate the click event to that method.
+
+countries.component.html
+```
+<ul>
+    <li *ngFor="let country of countries$ | async" (click)="selectCountry(country.city)">{{ country.country }}</li>
+</ul>
+```
+
+Second, we will inject the service in ``city.component.ts``:
+
+city.component.ts
+```
+export class CityComponent {
+  constructor(public cityService: CityService) { }
+}
+```
+
+And we will wait for the ``Observable`` to be resolved with the ``async`` pipe.
+
+city.component.html
+
+```
+<div class="city">
+  <h1 *ngIf="cityService.getCity() | async as city">
+    {{ city }}
+  </h1>
+</div>
+```
+
+If you now go back to your browser, you will see that when you click on a country, you can see its capital city!
 
 TESTING CON JEST
 
