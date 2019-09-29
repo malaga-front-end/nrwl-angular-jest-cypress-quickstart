@@ -373,7 +373,7 @@ cityService = TestBed.get(CityService);
 We don't want `CountriesServices` to perform an HTTP call to retrieve the list of countries so we have to mock `getCountries()` to return what we want.
 
 ```typescript
-jest.spyOn(countriesService, 'getCountries').and.returnValue(of([
+jest.spyOn(countriesService, 'getCountries').mockReturnValue(of([
   { country: 'Spain', city: 'Madrid' },
   { country: 'France', city: 'Paris'}
 ]));
@@ -430,8 +430,6 @@ What if my test fail because I introduced a change in the HTML? Well, then you n
 ```
 ng test -u
 ```
-
-SEGUIR CON LOS DEMAS UNIT TESTS
 
 ## E2E testing with Cypress
 
