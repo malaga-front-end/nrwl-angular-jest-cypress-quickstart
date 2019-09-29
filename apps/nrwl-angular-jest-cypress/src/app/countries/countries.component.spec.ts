@@ -30,12 +30,12 @@ describe('CountriesComponent', () => {
     fixture = TestBed.createComponent(CountriesComponent);
     component = fixture.componentInstance;
 
-    spyOn(countriesService, 'getCountries').and.returnValue(of([
+    jest.spyOn(countriesService, 'getCountries').mockReturnValue(of([
       { country: 'Spain', city: 'Madrid' },
       { country: 'France', city: 'Paris'}
     ]));
 
-    spyOn(cityService, 'emitCity');
+    jest.spyOn(cityService, 'emitCity');
 
     fixture.detectChanges();
   });

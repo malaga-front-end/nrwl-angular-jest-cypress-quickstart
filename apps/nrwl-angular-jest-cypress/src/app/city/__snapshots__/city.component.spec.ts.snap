@@ -5,7 +5,7 @@ exports[`CityComponent should render component properly 1`] = `
   cityService={[Function CityService]}
 >
   <div
-    style="position: fixed; top: 0; right: 20px;"
+    class="city"
   >
     
     <h1>
