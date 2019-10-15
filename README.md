@@ -135,7 +135,7 @@ This command will generate all the files inside ``countries``component, containi
 
 To perform the HTTP call, we first need to import an Angular module called ``HttpClientModule``. Go to ``app.module.ts`` and add it inside ``imports``.
 
-```
+```diff
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 + import { HttpClientModule } from '@angular/common/http';
