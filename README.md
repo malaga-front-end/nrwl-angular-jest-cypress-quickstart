@@ -57,9 +57,9 @@ npm init nx-workspace myworkspace
 
 You will need to answer a few questions to setup your application:
 
-*What to create in the new workspace?* angular (a workspace with a single angular application)
-*Application Name?* myapp
-*Default stylesheet format* CSS (we will not style anything here)
+* What to create in the new workspace? angular (a workspace with a single angular application)
+* Application Name? myapp
+* Default stylesheet format? CSS (we will not style anything here)
 
 It will start to download and setup your initial app. Jest (Unit testing) and Cypress (E2E) dependencies will be automatically added.
 
@@ -135,22 +135,22 @@ This command will generate all the files inside ``countries``component, containi
 
 To perform the HTTP call, we first need to import an Angular module called ``HttpClientModule``. Go to ``app.module.ts`` and add it inside ``imports``.
 
-```
+<pre>
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+<b>import { HttpClientModule } from '@angular/common/http';</b>
 
 import { AppComponent } from './app.component';
 import { CountriesComponent } from './countries/countries.component';
 
 @NgModule({
   declarations: [AppComponent, CountriesComponent],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [BrowserModule, <b>HttpClientModule</b>],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
-```
+</pre>
 
 Now, go to ``CountriesComponent`` and import ``HttpClient`` service. This is the service that will allow you to perform an HTTP call. Additionally, create a method ``getCountries`` to do a GET to the provided url.
 
