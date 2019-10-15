@@ -135,22 +135,23 @@ This command will generate all the files inside ``countries``component, containi
 
 To perform the HTTP call, we first need to import an Angular module called ``HttpClientModule``. Go to ``app.module.ts`` and add it inside ``imports``.
 
-<pre>
+```
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-<b>import { HttpClientModule } from '@angular/common/http';</b>
++ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CountriesComponent } from './countries/countries.component';
 
 @NgModule({
   declarations: [AppComponent, CountriesComponent],
-  imports: [BrowserModule, <b>HttpClientModule</b>],
+- imports: [BrowserModule],
++ imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
-</pre>
+```
 
 Now, go to ``CountriesComponent`` and import ``HttpClient`` service. This is the service that will allow you to perform an HTTP call. Additionally, create a method ``getCountries`` to do a GET to the provided url.
 
