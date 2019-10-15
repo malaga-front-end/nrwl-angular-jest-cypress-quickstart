@@ -3,6 +3,8 @@
 # nrwl-angular-jest-cypress-quickstart
 Nrwl+Angular+Jest+Cypress Quickstart. Create your app in less than 1 hour!
 
+- [Getting Started](./tutorial/getting-started)
+
 ## Prerequisites
 
 Before creating the application, you need to install some tools.
