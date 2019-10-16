@@ -1,4 +1,4 @@
-## Adding our components
+## Developing our app
 
 We will create a very simple app to demonstrate how easy is to add new components and their tests: 
 
@@ -27,7 +27,7 @@ To use the component, it should be declared in ``app.module.ts``. Angular CLI al
 
 Do you want to see your brand new component in your browser? Check the ``selector``property inside the component decorator. Now, add an element with that name inside the root component, that is called ``app.component.html`` (delete first all the previously existing content in ``app.component.html`` and ``app.component.css``).
 
-<b>app.component.html</b>
+<pre><b>app.component.html</b></pre>
 ```diff
 + <myapp-countries></myapp-countries>
 ```
@@ -62,6 +62,7 @@ Open your browser and go to http://localhost:3000/countries. You will see a list
 
 Let's create a file called ``country.ts`` inside ``countries`` folder to define the model:
 
+<pre><b>country.ts</b></pre>
 ```diff
 + export interface Country {
 +   name: string;
@@ -84,6 +85,7 @@ This command will generate all the files inside ``countries`` component, contain
 
 To perform an HTTP call, we first need to import an Angular module called ``HttpClientModule``. Go to ``app.module.ts`` and add it inside ``imports``.
 
+<pre><b>app.module.ts</b></pre>
 ```diff
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -104,6 +106,7 @@ export class AppModule {}
 
 Now, go to ``CountriesService`` and import ``HttpClient`` service. This is the service that will allow you to perform requests. Create a method ``getCountries`` to perform a GET request to the provided url.
 
+<pre><b>countries.service.ts</b></pre>
 ```diff
 import { Injectable } from '@angular/core';
 + import { HttpClient } from '@angular/common/http';
@@ -130,6 +133,7 @@ export class CountriesService {
 
 Now that we have our service ready, we need to inject it and call ``getCountries`` on component initialization:
 
+<pre><b>countries.component.ts</b></pre>
 ```diff
 import { Component, OnInit } from '@angular/core';
 + import { CountriesService } from './countries.service';
@@ -156,6 +160,7 @@ export class CountriesComponent implements OnInit {
 
 Now, we will edit our template in ``countries.component.html`` to show the results:
 
+<pre><b>countries.component.html</b></pre>
 ```diff
 + <ul>
 +    <li *ngFor="let country of countries$ | async">{{ country.name }}</li>
@@ -182,19 +187,23 @@ ng g component city
 
 Add the content of the template:
 
+<pre><b>city.component.html</b></pre>
 ```diff
 - <p>city works!</p>
 + <h1>city works!</h1>
 ```
 
-Add some styles to allocate it on top right of the screen:
+<b>Optional:</b> If you want to display the name of the city in a beautiful way, copy into ``city.component.css`` the styles located in this file: [city.component.css](./tutorial/app/city.component.css)
 
+[PENDING CREATE ./tutorial/app/city.component.css]
+
+Next step is to add our new component to ``app.component.html``.
+
+<pre><b>app.component.html</b></pre>
 ```diff
-+ h1 {
-+     position: fixed; 
-+     top: 0; 
-+     right: 20px;
-+ }
+<myapp-countries></myapp-countries>
++ <myapp-city></myapp-city>
+
 ```
 
 Now that we have both components created, we will create our ``SharedService`` to communicate them:
@@ -203,52 +212,55 @@ Now that we have both components created, we will create our ``SharedService`` t
 ng g service shared
 ```
 
-We will create a ``Subject``, transform it into an ``Observable`` and create methods to emit the value and get the observable stream.
+We are going to use a ``Subject`` and an ``Observable`` to do the communication. We won't go too much into the details about how observables work here since it's a big subject, but in a nutshell there are two methods that we're interested in: ``Observable.subscribe()`` and ``Subject.next()``.
 
+* <b>Observable.subscribe()</b>: This method is used to subscribe to messages that are sent to an observable. In our case the subscription will be automatically handle by the angular pipe ``async``, the advantage of this is that we don't need to worry to unsubscribe to the observable when it is completed.
+* <b>Subject.next()</b>: This method is used to send messages to an observable which are then sent to all the angular components that are subscribers of that observable.
+
+<pre><b>shared.service.ts</b></pre>
 ```diff
-- import { Injectable } from '@angular/core';
-+ import { Injectable, EventEmitter } from '@angular/core';
-+ import { Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
++ import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
-+   // Observable string sources
-+   private citySource = new Subject<string>();
-+
-+   // Observable string streams
-+   city$ = this.citySource.asObservable();
-+ 
-+   // Service message commands
-+   emitCity(city: string) {
-+     this.citySource.next(city);
-+   }
-+
-+   getCity() {
-+     return this.city$;
-+   }
++  private subject: Subject<string> = new Subject<string>();
++  private city$: Observable<string> = this.subject.asObservable();
+  
+-  constructor() { }
+  
++  sendCity(city: string) {
++    this.subject.next(city);
++  }
+
++  getCity() {
++    return this.city$;
++  }
 }
 ```
 
-With our service ready to emit and receive values, we can edit both components to finish our app.
+With our service ready to send and receive values, we can edit both components to finish our app.
 
-First we will edit ``countries.component.ts`` to add a method to emit the value.
+First we will edit ``countries.component.ts`` to add a method to send the city.
 
-countries.component.ts
+<pre><b>countries.component.ts</b></pre>
 ```diff
 import { Component, OnInit } from '@angular/core';
 import { CountriesService } from './countries.service';
+import { Observable } from 'rxjs';
+import { Country } from './country';
 + import { SharedService } from '../shared.service';
 
 @Component({
-  selector: 'nrwl-angular-jest-cypress-countries',
+  selector: 'myapp-countries',
   templateUrl: './countries.component.html',
   styleUrls: ['./countries.component.css']
 })
 export class CountriesComponent implements OnInit {
 
-  countries$: any;
+  countries$: Observable<Country[]>;
 
 -  constructor(private countriesService: CountriesService) { }
 +  constructor(private countriesService: CountriesService, private sharedService: SharedService) { }
@@ -257,41 +269,60 @@ export class CountriesComponent implements OnInit {
     this.countries$ = this.countriesService.getCountries();
   }
 
-+  selectCountry(city: string) {
-+    this.cityService.emitCity(city);
++  sendCity(city: string) {
++    this.sharedService.sendCity(city);
 +  }
+
 }
+
 ```
 
-And after that, we will associate the click event to that method.
+And after that, we will execute ``sendCity`` on click event.
 
-countries.component.html
+<pre><b>countries.component.html</b></pre>
 ```diff
 <ul>
--    <li *ngFor="let country of countries$ | async">{{ country.country }}</li>
-+    <li *ngFor="let country of countries$ | async" (click)="selectCountry(country.city)">{{ country.country }}</li>
+-    <li *ngFor="let country of countries$ | async">{{ country.name }}</li>
++    <li *ngFor="let country of countries$ | async" (click)="sendCity(country.capital)">{{ country.name }}</li>
 </ul>
 ```
 
 Second, we will inject the service in ``city.component.ts``:
 
-city.component.ts
+<pre><b>city.component.ts</b></pre>
 ```diff
+import { Component, OnInit } from '@angular/core';
 + import { SharedService } from '../shared.service';
 
-export class CityComponent {
+@Component({
+  selector: 'myapp-city',
+  templateUrl: './city.component.html',
+  styleUrls: ['./city.component.css']
+})
+export class CityComponent implements OnInit {
+
 -  constructor() { }
-+  constructor(public sharedService: SharedService) { }
++  constructor(private sharedService: SharedService) { }
+
+  ngOnInit() {
+  }
+
++  getCity() {
++    return this.sharedService.getCity();
++  }
+
 }
+
 ```
 
-And we will wait for the ``Observable`` to be resolved with the ``async`` pipe.
+Now we are going to handle the subscription automatically using the angular pipe ``async`` to receive the cities sent from ``CountriesComponent`` through the ``subject.next()``.
 
-city.component.html
-
+<pre><b>city.component.html</b></pre>
 ```diff
 - <h1>city works!</h1>
-+ <h1 *ngIf="cityService.getCity() | async as city">{{ city }}</h1>
++ <h1 *ngIf="getCity() | async as city">{{ city }}</h1>
 ```
 
-If you now go back to your browser, you will see that when you click on a country, you can see its capital city!
+Go back to your browser and click on a country. You should see its capital city on screen.
+
+[ Add screenshot ]
