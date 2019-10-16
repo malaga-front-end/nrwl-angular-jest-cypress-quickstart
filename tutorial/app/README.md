@@ -195,8 +195,6 @@ Add the content of the template:
 
 <b>Optional:</b> If you want to display the name of the city in a beautiful way, copy into ``city.component.css`` the styles located in this file: [city.component.css](./tutorial/app/city.component.css)
 
-[PENDING CREATE ./tutorial/app/city.component.css]
-
 Next step is to add our new component to ``app.component.html``.
 
 <pre><b>app.component.html</b></pre>
