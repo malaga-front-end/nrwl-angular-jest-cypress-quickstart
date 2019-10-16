@@ -1,0 +1,17 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "nrwlAngularJestCypressQuickstart",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "myapp",
+      "kebab-case"
+    ]
+  }
+}
