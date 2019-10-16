@@ -6,7 +6,7 @@
       "schematics": {},
       "root": "apps/myapp",
       "sourceRoot": "apps/myapp/src",
-      "prefix": "nrwl-angular-jest-cypress-quickstart",
+      "prefix": "myapp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

@@ -16,37 +16,73 @@ To create our first component, we need to create a class for its behaviour, a te
 ng g component countries
 ```
 
-This command will generate a folder called ``countries`` inside ``src/app``, and inside you will find:
+This command will generate a folder called ``countries`` inside ``apps/myapp/src/app``, and inside you will find:
 
-``countries.component.ts`` - An empty typescript class called ``CountriesComponent`` properly annotated as a ``@Component`` and already linked to its template and styles.
-``countries.component.html`` - An empty template that represents the view of the component.
-``countries.component.css`` - To style the component. 
-``countries.component.spec.ts``- Unit tests for the component already initialized for its first test
+* ``countries.component.ts`` - An empty typescript class called ``CountriesComponent`` properly annotated as a ``@Component`` and already linked to its template and styles.
+* ``countries.component.html`` - An empty template that represents the view of the component.
+* ``countries.component.css`` - To style the component. 
+* ``countries.component.spec.ts``- Unit tests for the component already initialized for its first test
 
 To use the component, it should be declared in ``app.module.ts``. Angular CLI also does this task automatically for you! Go to ``app.module.ts`` and check that the component has been automatically added to ``declarations``.
 
-Do you want to see your brand new component in your browser? Check the ``selector``property inside the component decorator. Now, add an element with that name inside the root component, that is called ``app.component.html`` (delete first all the previously existing content there).
+Do you want to see your brand new component in your browser? Check the ``selector``property inside the component decorator. Now, add an element with that name inside the root component, that is called ``app.component.html`` (delete first all the previously existing content in ``app.component.html`` and ``app.component.css``).
+
+<b>app.component.html</b>
+```diff
++ <myapp-countries></myapp-countries>
+```
+
+If you go back to the browser, you will see that it has automatically reloaded to show your new component! 
+
+## Simulate a REST API with JSON Server
+
+We need some data to work with. JSON Server is a simple project that helps you to setup a REST API with CRUD operations really fast. JSON Server is available as a NPM package. The installation can be done using ``npm``:
 
 ```
-<app-countries></app-countries>
+npm install -g json-server
 ```
 
-If you go back to the browser tab that is showing our app, you will see that it has automatically reloaded to show your new component! 
+Now, execute the following command from this project's root folder:
+
+```
+json-server tutorial/app/db.json 
+```
+
+Open your browser and go to http://localhost:3000/countries. You will see a list of countries in JSON format. The model for a country is:
+
+```
+[
+  {
+    "name": "Afghanistan",
+    "capital": "Kabul"
+  },
+  ...
+]
+```
+
+Let's create a file called ``country.ts`` inside ``countries`` folder to define the model:
+
+```diff
++ export interface Country {
++   name: string;
++   capital: string;
++ }
+```
 
 ## Adding our Services
 
-Now that we have our CountriesComponent in place, let's populate it! We need to create a server for this porpuse. We will create a method inside it that will do a GET request to retrieve the data that we need. Use the following command:
+Now that we have our ``CountriesComponent`` and our server running, let's do our first HTTP Request! We need to create a service for this purpose. Use the following command:
 
 ```
 ng g service countries/countries
 ```
 
-This command will generate all the files inside ``countries``component, containing:
+This command will generate all the files inside ``countries`` component, containing:
 
-``countries.service.ts`` - An empty typescript class called ``CountriesService`` properly annotated as a ``@Injectable`` to mark a class as available to be provided and injected as a dependency.
-``countries.service.spec.ts``- Unit tests for the service already initialized for its first test.
+* ``countries.service.ts`` - An empty typescript class called ``CountriesService`` properly annotated as ``@Injectable`` to mark a class as available to be provided and injected as a dependency.
+* ``countries.service.spec.ts``- Unit tests for the service already initialized for its first test.
 
-To perform the HTTP call, we first need to import an Angular module called ``HttpClientModule``. Go to ``app.module.ts`` and add it inside ``imports``.
+To perform an HTTP call, we first need to import an Angular module called ``HttpClientModule``. Go to ``app.module.ts`` and add it inside ``imports``.
 
 ```diff
 import { BrowserModule } from '@angular/platform-browser';
@@ -66,11 +102,13 @@ import { CountriesComponent } from './countries/countries.component';
 export class AppModule {}
 ```
 
-Now, go to ``CountriesComponent`` and import ``HttpClient`` service. This is the service that will allow you to perform an HTTP call. Additionally, create a method ``getCountries`` to do a GET to the provided url.
+Now, go to ``CountriesService`` and import ``HttpClient`` service. This is the service that will allow you to perform requests. Create a method ``getCountries`` to perform a GET request to the provided url.
 
 ```diff
 import { Injectable } from '@angular/core';
 + import { HttpClient } from '@angular/common/http';
++ import { Observable } from 'rxjs';
++ import { Country } from './country';
 
 @Injectable({
   providedIn: 'root'
@@ -82,19 +120,21 @@ export class CountriesService {
 -  constructor() { }
 +  constructor(private httpClient: HttpClient) { }
 
-+  public getCountries() {
-+    return this.httpClient.get(this.url);
++  public getCountries(): Observable<Country[]> {
++   return this.httpClient.get<Country[]>(this.url);
 +  }
 }
 ```
 
-### Injecting the service into the component
+### Injecting CountriesService into CountriesComponent
 
-Now that we have our service ready, we need to inject it into our component and call ``getCountries`` from there when initializing the component. 
+Now that we have our service ready, we need to inject it and call ``getCountries`` on component initialization:
 
 ```diff
 import { Component, OnInit } from '@angular/core';
 + import { CountriesService } from './countries.service';
++ import { Observable } from 'rxjs';
++ import { Country } from './country';
 
 @Component({
   selector: 'app-countries',
@@ -103,7 +143,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountriesComponent implements OnInit {
 
-+ countries$: any;
++ countries$: Observable<Country[]>;
 
 - constructor() { }
 + constructor(private countriesService: CountriesService) { }
@@ -118,11 +158,15 @@ Now, we will edit our template in ``countries.component.html`` to show the resul
 
 ```diff
 + <ul>
-+    <li *ngFor="let country of countries$ | async">{{ country.country }}</li>
++    <li *ngFor="let country of countries$ | async">{{ country.name }}</li>
 + </ul>
 ```
 
 If you go now to your browser, you should see a list of countries.
+
+<b>Optional:</b> If you want to have a beautiful list of elements, copy into ``countries.component.css`` the styles located in this file: [countries.component.css](./tutorial/app/countries.component.css)
+
+[INSERT APP IMAGE HERE]
 
 ## Component interaction
 
