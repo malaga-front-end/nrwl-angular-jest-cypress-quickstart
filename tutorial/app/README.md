@@ -1,8 +1,12 @@
+[complete-app]: assets/complete-app.png
+[app-without-styles]: assets/app-without-styles.png
+[app-with-styles]: assets/app-with-styles.png
+
 ## Developing our app
 
 We will create a very simple app to demonstrate how easy is to add new components and their tests: 
 
-[Insert image here]
+![complete-app]
 
 * We will create a component to show a list of countries
 * We will create a component to show a city name
@@ -169,9 +173,11 @@ Now, we will edit our template in ``countries.component.html`` to show the resul
 
 If you go now to your browser, you should see a list of countries.
 
+![app-without-styles]
+
 <b>Optional:</b> If you want to have a beautiful list of elements, copy into ``countries.component.css`` the styles located in this file: [countries.component.css](./tutorial/app/countries.component.css)
 
-[INSERT APP IMAGE HERE]
+![app-with-styles]
 
 ## Component interaction
 
@@ -323,4 +329,4 @@ Now we are going to handle the subscription automatically using the angular pipe
 
 Go back to your browser and click on a country. You should see its capital city on screen.
 
-[ Add screenshot ]
+![complete-app]
