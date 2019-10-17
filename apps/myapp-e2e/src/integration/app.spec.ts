@@ -1,9 +1,16 @@
-import { getGreeting } from '../support/app.po';
-
 describe('myapp', () => {
-  beforeEach(() => cy.visit('/'));
+  before(() => {
+    cy.server();           // enable response stubbing
+    cy.route({
+      method: 'GET',      // Route all GET requests
+      url: '/countries',    // that have a URL that matches '/countries'
+      response: [{name: 'Spain', capital: 'Madrid'}, {name: 'France', capital: 'Paris'}]        // and force the response to be this one
+    });
+    cy.visit('/');
+  });
 
-  it('should display welcome message', () => {
-    getGreeting().contains('Welcome to myapp!');
+  it('should display city when clicking on country', () => {
+    cy.contains('Spain').click();
+    cy.get('h1').contains('Madrid');
   });
 });
