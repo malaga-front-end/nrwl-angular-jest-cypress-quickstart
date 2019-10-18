@@ -1,5 +1,12 @@
 ## Unit and snapshot testing with Jest
-[TODO Explanation of Jest]
+Now that we have the app completed we can start writing unit tests with Jest.
+
+Jest is a Javascript testing framework focused on simplicity. Some of the benefits of using Jest are:
+
+* Easy mocking. In just one line you can mock an entire service.
+* Allows parallel execution. Jest runs your tests in parallel making it faster than Jasmine.
+* Easy UI testing. With Jest you can create snapshots of your rendered HTML. You don't need to navigate through the DOM anymore!
+* Does not need specific configuration. You can start using Jest after installing it.
 
 ### Unit Testing our first component: CountriesComponent
 As we used Angular CLI to create our component we have an initial set up to start covering our component with more tests.
