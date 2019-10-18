@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CountriesComponent should render a list of countries 1`] = `
+<myapp-countries
+  countries$={[Function Observable]}
+  countriesService={[Function CountriesService]}
+  sharedService={[Function SharedService]}
+>
+  <ul>
+    
+    <li>
+      Spain
+    </li>
+    <li>
+      France
+    </li>
+  </ul>
+</myapp-countries>
+`;
