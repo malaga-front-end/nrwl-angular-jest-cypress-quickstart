@@ -188,9 +188,9 @@ describe('CountriesComponent', () => {
 
 ...
 
-  it('should render a list of countries', () => {
-    expect(fixture).toMatchSnapshot();
-  });
++  it('should render a list of countries', () => {
++    expect(fixture).toMatchSnapshot();
++  });
 });
 
 ```
