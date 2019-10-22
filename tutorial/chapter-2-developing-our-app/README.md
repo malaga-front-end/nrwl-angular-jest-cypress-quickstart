@@ -12,7 +12,7 @@ We will create a very simple app to demonstrate how easy is to add new component
 * We will create a component to show a city name
 * We will communicate both components: when a country is clicked, its capital city will be shown.
 
-### Our first component: CountriesComponent
+## Our first component: CountriesComponent
 
 To create our first component, we need to create a class for its behaviour, a template for its view, a CSS file for styling, and a test file to implement its unit tests. Of course, you need to annotate the component to indicate to Angular that the class should be treated as a component, initialize the unit tests with TestBed in the proper way... Do you think that we are going to do it by hand? No! We are going to use the power of Angular CLI to generate all that we have stated before with a single command line: 
 
