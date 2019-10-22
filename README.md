@@ -1,6 +1,6 @@
 [countries-app]: assets/countries-app.png
 
-# Create your Angular app and test it with Jest and Cypress in less than 1 hour!
+# Create your Angular app and test it with Jest and Cypress
 
 - [Chapter 1: Getting Started](./tutorial/chapter-1-getting-started)
 - [Chapter 2: Developing our app](./tutorial/chapter-2-developing-our-app)
