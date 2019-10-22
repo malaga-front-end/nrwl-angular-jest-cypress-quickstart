@@ -2,7 +2,7 @@
 [app-without-styles]: assets/app-without-styles.png
 [app-with-styles]: assets/app-with-styles.png
 
-## Developing our app
+# Chapter 2: Developing our app
 
 We will create a very simple app to demonstrate how easy is to add new components and their tests: 
 
@@ -175,7 +175,7 @@ If you go now to your browser, you should see a list of countries.
 
 ![app-without-styles]
 
-<b>Optional:</b> If you want to have a beautiful list of elements, copy into ``countries.component.css`` the styles located in this file: [countries.component.css](./tutorial/app/countries.component.css)
+<b>Optional:</b> If you want to have a beautiful list of elements, copy into ``countries.component.css`` the styles located in this file: [countries.component.css](./countries.component.css)
 
 ![app-with-styles]
 
@@ -199,7 +199,7 @@ Add the content of the template:
 + <h1>city works!</h1>
 ```
 
-<b>Optional:</b> If you want to display the name of the city in a beautiful way, copy into ``city.component.css`` the styles located in this file: [city.component.css](./tutorial/app/city.component.css)
+<b>Optional:</b> If you want to display the name of the city in a beautiful way, copy into ``city.component.css`` the styles located in this file: [city.component.css](./city.component.css)
 
 Next step is to add our new component to ``app.component.html``.
 

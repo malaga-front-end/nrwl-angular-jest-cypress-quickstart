@@ -2,7 +2,7 @@
 [stub]: assets/stub.png
 [time-travel]: assets/time-travel.png
 
-## E2E testing with Cypress
+# Chapter 4: E2E testing with Cypress
 
 Now that we have unit tested our components separately with Jest, it is the moment to do integration tests with Cypress. Cypress is a framework that makes the following tasks amazingly simple:
 
