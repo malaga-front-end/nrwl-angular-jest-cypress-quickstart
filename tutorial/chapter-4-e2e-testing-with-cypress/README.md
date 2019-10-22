@@ -11,6 +11,8 @@ Now that we have unit tested our components separately with Jest, it is the mome
 * Running tests: Cypress runs as fast as your browser can render content. You can watch tests run in real time as you develop your applications.
 * Debugging: Readable error messages help you to debug quickly. You also have access to all developer tools you know and love.
 
+## Writing your first E2E test
+
 Now, let's tell to cypress what do we want to do with the app. We should display the capital city of the country that we click. We will click a list item (``li``), and after that, there will be a ``h1`` that will show the name of the city. Let's write that!
 
 ```diff
@@ -59,7 +61,7 @@ describe('app', () => {
 
 ```
 
-### Stubbing a response
+## Stubbing a response
 
 With the code that we have developed before, we are calling the real endpoint. Imagine that your E2E is running in a pipeline, and you want it passing even if the real endpoint is not available. Stubbing a response is very easy:
 
