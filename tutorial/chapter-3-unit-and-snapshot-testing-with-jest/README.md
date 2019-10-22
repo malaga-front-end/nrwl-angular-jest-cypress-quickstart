@@ -8,7 +8,7 @@ Jest is a Javascript testing framework focused on simplicity. Some of the benefi
 * Easy UI testing. With Jest you can create snapshots of your rendered HTML. You don't need to navigate through the DOM anymore!
 * Does not need specific configuration. You can start using Jest after installing it.
 
-### Unit Testing our first component: CountriesComponent
+## Unit Testing our first component: CountriesComponent
 As we used Angular CLI to create our component we have an initial set up to start covering our component with more tests.
 
 <pre><b>countries.component.spec.ts</b></pre>
@@ -170,7 +170,7 @@ describe('CountriesComponent', () => {
 
 ```
 
-### Snapshot Testing our first component: CountriesComponent
+## Snapshot Testing our first component: CountriesComponent
 
 Snapshot tests are a very useful tool to make sure your UI does not change unexpectedly. 
 
@@ -232,7 +232,7 @@ If we introduce a change we need to update our stored snapshot, to do that we ju
 ng test -u
 ```
 
-### Unit Testing our service: CountriesService
+## Unit Testing our service: CountriesService
 
 Go to ``countries.service.spec.ts``.
 
