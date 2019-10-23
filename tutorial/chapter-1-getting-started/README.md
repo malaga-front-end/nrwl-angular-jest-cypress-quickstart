@@ -49,7 +49,7 @@ npm i -g @nrwl/nx
 ### Create your workspace
 
 ```
-npm init nx-workspace myworkspace
+npm init nx-workspace myapp
 ```
 
 You will need to answer a few questions to setup your application:
