@@ -333,5 +333,5 @@ Go back to your browser and click on a country. You should see its capital city 
 
 We have finished developing our app. Let's start testing it!
 
-Continue to [Chapter 3: Unit and Snapshot testing with Jest](../chapter-3-unit-and-snapshot-testing-with-jest).
+Continue to [Chapter 3: The Front End Testing Pyramid](../chapter-3-the-fe-testing-pyramid).
 

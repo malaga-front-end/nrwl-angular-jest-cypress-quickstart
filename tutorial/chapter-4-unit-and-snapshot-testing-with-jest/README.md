@@ -282,5 +282,5 @@ Reaching this point, you are in a good position to continue learning Jest and ma
 
 After unit testing your application, you can now check that all together works developing your first e2e test with Cypress!
 
-Continue to [Chapter 4: E2E Testing with Cypress](../chapter-4-e2e-testing-with-cypress).
+Continue to [Chapter 5: E2E Testing with Cypress](../chapter-5-e2e-testing-with-cypress).
 
