@@ -1,4 +1,4 @@
-# Chapter 3: Unit and snapshot testing with Jest
+# Chapter 4: Unit and snapshot testing with Jest
 Now that we have the app completed we can start writing unit tests with Jest.
 
 Jest is a Javascript testing framework focused on simplicity. Some of the benefits of using Jest are:
