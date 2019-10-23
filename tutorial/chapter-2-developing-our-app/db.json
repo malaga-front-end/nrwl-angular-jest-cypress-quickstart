@@ -30,10 +30,6 @@
               "capital": "The Valley"
           },
           {
-              "name": "Antarctica",
-              "capital": null
-          },
-          {
               "name": "Antigua and Barbuda",
               "capital": "Saint John's"
           },
@@ -114,16 +110,8 @@
               "capital": "Gaborone"
           },
           {
-              "name": "Bouvet Island",
-              "capital": null
-          },
-          {
               "name": "Brazil",
               "capital": "Brasília"
-          },
-          {
-              "name": "British Indian Ocean Territory",
-              "capital": null
           },
           {
               "name": "Brunei",
@@ -302,10 +290,6 @@
               "capital": "Papeete"
           },
           {
-              "name": "French Southern territories",
-              "capital": null
-          },
-          {
               "name": "Gabon",
               "capital": "Libreville"
           },
@@ -368,10 +352,6 @@
           {
               "name": "Haiti",
               "capital": "Port-au-Prince"
-          },
-          {
-              "name": "Heard Island and McDonald Islands",
-              "capital": null
           },
           {
               "name": "Holy See (Vatican capital State)",
@@ -794,10 +774,6 @@
               "capital": "Pretoria"
           },
           {
-              "name": "South Georgia and the South Sandwich Islands",
-              "capital": null
-          },
-          {
               "name": "South Korea",
               "capital": "Seoul"
           },
@@ -808,10 +784,6 @@
           {
               "name": "Spain",
               "capital": "Madrid"
-          },
-          {
-              "name": "SriLanka",
-              "capital": null
           },
           {
               "name": "Sudan",
@@ -852,10 +824,6 @@
           {
               "name": "Thailand",
               "capital": "Bangkok"
-          },
-          {
-              "name": "The Democratic Republic of Congo",
-              "capital": null
           },
           {
               "name": "Togo",
@@ -912,10 +880,6 @@
           {
               "name": "United States",
               "capital": "Washington"
-          },
-          {
-              "name": "United States Minor Outlying Islands",
-              "capital": null
           },
           {
               "name": "Uruguay",

@@ -49,7 +49,7 @@ npm install -g json-server
 Now, execute the following command from this project's root folder:
 
 ```
-json-server tutorial/app/db.json 
+json-server tutorial/chapter-2-developing-our-app/db.json 
 ```
 
 Open your browser and go to http://localhost:3000/countries. You will see a list of countries in JSON format. The model for a country is:
@@ -330,3 +330,8 @@ Now we are going to handle the subscription automatically using the angular pipe
 Go back to your browser and click on a country. You should see its capital city on screen.
 
 ![complete-app]
+
+We have finished developing our app. Let's start testing it!
+
+Continue to [Chapter 3: Unit and Snapshot testing with Jest](../chapter-3-unit-and-snapshot-testing-with-jest).
+

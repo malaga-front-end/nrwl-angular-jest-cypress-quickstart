@@ -56,7 +56,7 @@ You will need to answer a few questions to setup your application:
 
 * What to create in the new workspace? angular (a workspace with a single angular application)
 * Application Name? myapp
-* Default stylesheet format? CSS (we will not style anything here)
+* Default stylesheet format? CSS
 
 It will start to download and setup your initial app. Jest (Unit testing) and Cypress (E2E) dependencies will be automatically added.
 
@@ -81,3 +81,7 @@ To execute the e2e tests of the application:
 ```
 ng e2e
 ```
+
+After installing all needed tools, you're ready to start creating your app!
+
+Continue to [Chapter 2: Developing our app](../chapter-2-developing-our-app).
