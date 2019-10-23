@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CityComponent should render a city 1`] = `
+<myapp-city
+  sharedService={[Function SharedService]}
+>
+  <h1>
+    Madrid
+  </h1>
+</myapp-city>
+`;

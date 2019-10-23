@@ -274,6 +274,8 @@ _   expect(service).toBeTruthy();
 +  });
 });
 
-```  
+```
+
+Testing ``CityComponent`` and ``SharedService`` is similar, you will find how to do it in [city.component.spec.ts](./apps/myapp/src/app/city/city.component.spec.ts) and [shared.service.spec.ts](./apps/myapp/src/app/shared.service.spec.ts).
 
 Reaching this point, you are in a good position to continue learning Jest and making your life easier when developing Unit and Snapshot tests for your app :).

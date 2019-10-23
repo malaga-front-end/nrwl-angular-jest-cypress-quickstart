@@ -1,12 +1,17 @@
-import { TestBed } from '@angular/core/testing';
-
 import { SharedService } from './shared.service';
+import { fakeAsync } from '@angular/core/testing';
 
 describe('SharedService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-
-  it('should be created', () => {
-    const service: SharedService = TestBed.get(SharedService);
-    expect(service).toBeTruthy();
+  let sharedService: SharedService;
+  beforeEach(() => {
+    sharedService = new SharedService();
   });
+
+  it('should send a city', fakeAsync(() => {
+    sharedService.getCity().subscribe((city) => {
+      expect(city).toBe('Madrid');
+    });
+
+    sharedService.sendCity('Madrid');
+  }));
 });
