@@ -145,7 +145,7 @@ import { Component, OnInit } from '@angular/core';
 + import { Country } from './country';
 
 @Component({
-  selector: 'app-countries',
+  selector: 'myapp-countries',
   templateUrl: './countries.component.html',
   styleUrls: ['./countries.component.css']
 })
