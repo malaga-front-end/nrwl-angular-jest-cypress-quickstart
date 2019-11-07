@@ -1,5 +1,3 @@
-import { TestBed } from '@angular/core/testing';
-
 import { CountriesService } from './countries.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -20,7 +18,7 @@ describe('CountriesService', () => {
     expect(countriesService).toBeTruthy();
   });
 
-  it('should retrieve a list of countries with its capitals', () => {
+  it('should call httpClient.get with the expected url', () => {
     countriesService.getCountries();
 
     expect(httpClient.get).toHaveBeenCalledWith('http://localhost:3000/countries');
