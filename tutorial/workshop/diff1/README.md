@@ -23,12 +23,16 @@ describe('AppComponent', () => {
 });
 ```
 
+<br/>
+
 <pre><b>app.component.html</b></pre>
 
 ```html
 <myapp-countries></myapp-countries>
 <myapp-city></myapp-city>
 ```
+
+<br/>
 
 <pre><b>countries.component.ts</b></pre>
 
@@ -50,6 +54,8 @@ export class CountriesComponent implements OnInit {
   }
 }
 ```
+
+<br/>
 
 <pre><b>city.component.ts</b></pre>
 
