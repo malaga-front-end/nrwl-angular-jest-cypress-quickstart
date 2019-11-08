@@ -2,6 +2,10 @@
 
 # Create your Angular app and test it with Jest and Cypress
 
+## JSDay Canarias 2019
+
+If you're attending to JSDay Canarias 2019 today, please, go directly to [Workshop README.md](./tutorial/workshop)
+
 ## Introduction
 
 This tutorial wants to be an introduction to some of the modern tools that makes developers' life easier. We will make an overview of:
