@@ -76,3 +76,5 @@ export class CityComponent implements OnInit {
   }
 }
 ```
+
+Continue to [Diff 2: Show List of Countries](../diff2)

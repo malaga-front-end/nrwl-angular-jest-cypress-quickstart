@@ -20,6 +20,8 @@ import { CityComponent } from './city/city.component';
 export class AppModule {}
 ```
 
+<br/>
+
 <pre><b>countries.service.ts</b></pre>
 
 ```typescript
@@ -42,6 +44,7 @@ export class CountriesService {
   }
 }
 ```
+<br/>
 
 <pre><b>countries.component.ts</b></pre>
 
@@ -68,6 +71,7 @@ export class CountriesComponent implements OnInit {
   }
 }
 ```
+<br/>
 
 <pre><b>countries.component.html</b></pre>
 
@@ -76,6 +80,7 @@ export class CountriesComponent implements OnInit {
   <li *ngFor="let country of countries$ | async">{{ country.name }}</li>
 </ul>
 ```
+<br/>
 
 <pre><b>countries.component.css</b></pre>
 
@@ -107,3 +112,5 @@ li:hover {
   background: #f6f6f6;
 }
 ```
+
+Continue to [Diff 3: App Completed](../diff3)

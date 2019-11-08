@@ -31,6 +31,8 @@ describe('CountriesService', () => {
 });
 ```
 
+<br/>
+
 <pre><b>countries.component.spec.ts</b></pre>
 
 ```typescript
@@ -94,3 +96,5 @@ describe('CountriesComponent', () => {
   });
 });
 ```
+
+Continue to [Diff 5: E2E Tests with Cypress](../diff5)

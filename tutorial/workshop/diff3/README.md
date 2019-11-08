@@ -30,6 +30,8 @@ export class CountriesComponent implements OnInit {
 }
 ```
 
+<br/>
+
 <pre><b>countries.component.html</b></pre>
 
 ```html
@@ -37,6 +39,8 @@ export class CountriesComponent implements OnInit {
   <li *ngFor="let country of countries$ | async" (click)="sendCity(country.capital)">{{ country.name }}</li>
 </ul>
 ```
+
+<br/>
 
 <pre><b>city.component.css</b></pre>
 
@@ -64,6 +68,8 @@ h1 {
 }
 ```
 
+<br/>
+
 <pre><b>city.component.ts</b></pre>
 
 ```typescript
@@ -88,8 +94,12 @@ export class CityComponent implements OnInit {
 }
 ```
 
+<br/>
+
 <pre><b>city.component.html</b></pre>
 
 ```html
 <h1 *ngIf="getCity() | async as city">{{ city }}</h1>
 ```
+
+Continue to [Diff 4: Unit & Snapshot Tests with Jest](../diff4)
