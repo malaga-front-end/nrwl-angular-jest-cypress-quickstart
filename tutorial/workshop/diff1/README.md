@@ -1,5 +1,7 @@
 # Diff 1: Components & Services Created
 
+Delete all content inside ``app.component.css``.
+
 <pre><b>app.component.spec.ts</b></pre>
 
 ```typescript

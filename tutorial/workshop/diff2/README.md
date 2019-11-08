@@ -22,6 +22,17 @@ export class AppModule {}
 
 <br/>
 
+<pre><b>country.ts</b></pre>
+
+```typescript
+export interface Country {
+  name: string;
+  capital: string;
+}
+```
+
+<br/>
+
 <pre><b>countries.service.ts</b></pre>
 
 ```typescript
@@ -35,7 +46,7 @@ import { Country } from './country';
 })
 export class CountriesService {
 
-  private readonly url = 'http://localhost:3000/countries';
+  private readonly url = 'http://10.150.145.134:3000/countries';
 
   constructor(private httpClient: HttpClient) { }
 
