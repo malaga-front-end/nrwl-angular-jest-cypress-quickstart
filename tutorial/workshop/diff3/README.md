@@ -1,5 +1,29 @@
 # Diff 3: App Completed
 
+<pre><b>shared.service.ts</b></pre>
+
+```typescript
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SharedService {
+
+  private subject: Subject<string> = new Subject<string>();
+  private city$: Observable<string> = this.subject.asObservable();
+
+  sendCity(city: string) {
+    this.subject.next(city);
+  }
+
+  getCity() {
+    return this.city$;
+  }
+}
+```
+
 <pre><b>countries.component.ts</b></pre>
 
 ```typescript
