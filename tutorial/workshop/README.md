@@ -14,7 +14,7 @@ If at any point of this workshop you get lost, check this diff files to see how 
 
 ## Fake endpoint url
 
-http://10.150.145.134:3000/countries
+http://localhost:3000/countries
 
 ## CSS File for CountriesComponent
 
