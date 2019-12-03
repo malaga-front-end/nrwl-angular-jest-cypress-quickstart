@@ -1,15 +1,64 @@
 # Chapter 4: Unit and snapshot testing with Jest
-Now that we have the app completed we can start writing unit tests with Jest.
+Now that the app is completed, let's start writing unit tests with Jest.
 
 Jest is a Javascript testing framework focused on simplicity. Some of the benefits of using Jest are:
 
-* Easy mocking. In just one line you can mock an entire service.
-* Allows parallel execution. Jest runs your tests in parallel making it faster than Jasmine.
-* Easy UI testing. With Jest you can create snapshots of your rendered HTML. You don't need to navigate through the DOM anymore!
-* Does not need specific configuration. You can start using Jest after installing it.
+* <b>Easy mocking.</b> In just one line you can mock an entire service.
+* <b>Allows parallel execution.</b> Jest runs your tests in parallel making it faster than Jasmine.
+* <b>Easy UI testing.</b> With Jest you can create snapshots of your rendered HTML. You don't need to navigate through the DOM anymore!
+* <b>Does not need specific configuration.</b> You can start using Jest after installing it.
 
-## Unit Testing our first component: CountriesComponent
-As we used Angular CLI to create our component we have an initial set up to start covering our component with more tests.
+In this tutorial, we will learn the following:
+
+* Unit test a service
+* Unit test a component
+* Snapshot test a component
+
+## Unit Testing a service
+
+Go to ``countries.service.spec.ts``.
+
+As we used Angular CLI to create our component we have an initial set up to start adding tests to our service. It's a good practice to avoid using Angular's TestBed because it is not needed to test services. It reduces complexity and increases speed when running the tests. 
+
+We just need to initialize the service creating a new instance of it. First thing we need to do is to mock ``HttpClient`` using jest. After that, we can spy on the method and check that we call ``HttpClient.get()`` method.
+
+<pre><b>countries.service.spec.ts</b></pre>
+```diff
+import { TestBed } from '@angular/core/testing';
+
+import { CountriesService } from './countries.service';
++ import { HttpClient } from '@angular/common/http';
+
++ jest.mock('@angular/common/http');
+
+describe('CountriesService', () => {
++ let httpClient: HttpClient;
++ let countriesService: CountriesService;
+
+-  beforeEach(() => TestBed.configureTestingModule({}));
++  beforeEach(() => {
++   httpClient = new HttpClient({} as any);
++   countriesService = new CountriesService(httpClient);
+
++   jest.spyOn(httpClient, 'get');
+  });
+  
+  it('should be created', () => {
+-   const service: CountriesService = TestBed.get(CountriesService);
+-   expect(service).toBeTruthy();
++   expect(countriesService).toBeTruthy();
+  });
+
++ it('should retrieve a list of countries with its capitals', () => {
++   countriesService.getCountries();
++   expect(httpClient.get).toHaveBeenCalledWith('http://localhost:3000/countries');
++  });
+});
+
+```
+
+## Unit Testing a component
+As we used Angular CLI to create our component we have an initial set up to start covering our component with more tests. This is what it has been automatically created:
 
 <pre><b>countries.component.spec.ts</b></pre>
 ```diff
@@ -40,19 +89,19 @@ describe('CountriesComponent', () => {
 });
 ```
 
-We need to test this component in isolation, what we know is that we have a list of elements that you can click to send data somewhere else. We need two different tests:
+We need to test this component in isolation. What we know is that we have a list of elements that you can click to send data somewhere else. We need two different tests:
 1. On init we call a service to retrieve a list of countries.
 2. When we click a country we send its capital.
 
-So let's start testing!
+So, let's start testing!
 
 Go to ``countries.component.spec.ts``.
 
-If you check `CountriesComponent` you will see that we are injecting two services (``CountriesService`` and ``SharedService``). We need to add both services to the TestBed as providers.
+If you check `CountriesComponent` you will see that we are injecting two services: ``CountriesService`` and ``SharedService``. We need to add both services to the TestBed as providers.
 
 As we want to test our component in isolation we need to mock the injected services. Jest makes mocking a super easy thing, we just need to use ``jest.mock(PATH_TO_YOUR_SERVICE)``. Now every time that we call a method from this services we will not use its real implementation.
 
-Now we are going to get our services from the testing context and store them in a variable so we can use them.
+Now we are going to get our services from the testing context and store them in a variable to use them.
 
 <pre><b>countries.component.spec.ts</b></pre>
 ```diff
@@ -74,7 +123,7 @@ describe('CountriesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CountriesComponent ],
-+      providers: [ CountriesService, SharedService ]
++     providers: [ CountriesService, SharedService ]
     })
     .compileComponents();
   }));
@@ -107,10 +156,10 @@ Now we can add the test to check that ``CountriesService.getCountries()`` has be
     countriesService = TestBed.get(CountriesService);
     sharedService = TestBed.get(SharedService);
 
-+    jest.spyOn(countriesService, 'getCountries').mockReturnValue(of([
-+      { name: 'Spain', capital: 'Madrid' },
-+      { name: 'France', capital: 'Paris'}
-+    ]));
++   jest.spyOn(countriesService, 'getCountries').mockReturnValue(of([
++     { name: 'Spain', capital: 'Madrid' },
++     { name: 'France', capital: 'Paris'}
++   ]));
 
     fixture = TestBed.createComponent(CountriesComponent);
     component = fixture.componentInstance;
@@ -121,9 +170,9 @@ Now we can add the test to check that ``CountriesService.getCountries()`` has be
     expect(component).toBeTruthy();
   });
 
-+  it('should call CountriesService.getCountries()', () => {
-+    expect(countriesService.getCountries).toHaveBeenCalled();
-+  });
++ it('should call CountriesService.getCountries()', () => {
++   expect(countriesService.getCountries).toHaveBeenCalled();
++ });
 });
 
 ```
@@ -152,7 +201,7 @@ describe('CountriesComponent', () => {
       { name: 'France', capital: 'Paris'}
     ]));
     
-+    jest.spyOn(sharedService, 'sendCity');
++   jest.spyOn(sharedService, 'sendCity');
 
     fixture = TestBed.createComponent(CountriesComponent);
     component = fixture.componentInstance;
@@ -161,16 +210,16 @@ describe('CountriesComponent', () => {
 
   ...
   
-+  it('should send capital city after clicking on a country', () => {
-+    const firstElement = fixture.debugElement.queryAll(By.css('li'))[0].nativeElement;
-+    firstElement.click();
-+    expect(sharedService.sendCity).toHaveBeenCalledWith('Madrid');
-+  });
++ it('should send capital city after clicking on a country', () => {
++   const firstElement = fixture.debugElement.queryAll(By.css('li'))[0].nativeElement;
++   firstElement.click();
++   expect(sharedService.sendCity).toHaveBeenCalledWith('Madrid');
++ });
 });
 
 ```
 
-## Snapshot Testing our first component: CountriesComponent
+## Snapshot Testing a component
 
 Snapshot tests are a very useful tool to make sure your UI does not change unexpectedly. 
 
@@ -199,7 +248,7 @@ After running the tests a folder named ``__snapshots__`` will be automatically c
 
 You need to review this file and check that everything is correct.
 
-<pre><b>countries.component.speec.ts.snap</b></pre>
+<pre><b>countries.component.spec.ts.snap</b></pre>
 ```diff
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
@@ -226,54 +275,10 @@ exports[`CountriesComponent should render a list of countries 1`] = `
 
 Next time we run the test jest will compare the new generated HTML against the one in this file, if both matches the test will pass, if not, the test will fail.
 
-If we introduce a change we need to update our stored snapshot, to do that we just need to run our tests with the flag ``-u`` to tell jest to update the snapshot file.
+If we introduce a change we need to update our stored snapshot, to do that we just need to run our tests with the flag ``-u`` to tell Jest to update the snapshot file.
 
 ```
 ng test -u
-```
-
-## Unit Testing our service: CountriesService
-
-Go to ``countries.service.spec.ts``.
-
-We are not going to use Angular's TestBed because it is not needed to test a service. Additionally it reduces complexity and increases speed when running the tests. 
-
-We will initialize the service creating a new instance of it. First thing we need to do in our case is to mock ``HttpClient`` using jest. After that, we can spy on the method as we did before and check that we call ``HttpClient.get()`` method.
-
-<pre><b>countries.service.spec.ts</b></pre>
-```diff
-import { TestBed } from '@angular/core/testing';
-
-import { CountriesService } from './countries.service';
-+ import { HttpClient } from '@angular/common/http';
-
-+ jest.mock('@angular/common/http');
-
-describe('CountriesService', () => {
-+  let httpClient: HttpClient;
-+  let countriesService: CountriesService;
-
--  beforeEach(() => TestBed.configureTestingModule({}));
-+  beforeEach(() => {
-+    httpClient = new HttpClient({} as any);
-+    countriesService = new CountriesService(httpClient);
-
-+    jest.spyOn(httpClient, 'get');
-  });
-  
-  it('should be created', () => {
--   const service: CountriesService = TestBed.get(CountriesService);
-_   expect(service).toBeTruthy();
-+    expect(countriesService).toBeTruthy();
-  });
-
-+ it('should retrieve a list of countries with its capitals', () => {
-+    countriesService.getCountries();
-+
-+    expect(httpClient.get).toHaveBeenCalledWith('http://localhost:3000/countries');
-+  });
-});
-
 ```
 
 Testing ``CityComponent`` and ``SharedService`` is similar, you will find how to do it in [city.component.spec.ts](../../apps/myapp/src/app/city/city.component.spec.ts) and [shared.service.spec.ts](../../apps/myapp/src/app/shared.service.spec.ts).
