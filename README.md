@@ -17,7 +17,7 @@ This tutorial wants to be an introduction to some of the modern tools that makes
 
 - [Chapter 1: Getting Started](./tutorial/chapter-1-getting-started)
 - [Chapter 2: Developing our app](./tutorial/chapter-2-developing-our-app)
-- [Chapter 3: The Front End Testing Pyramid](./chapter-3-the-fe-testing-pyramid)
+- [Chapter 3: The Front End Testing Pyramid](./tutorial/chapter-3-the-fe-testing-pyramid)
 - [Chapter 4: Unit and snapshot testing with Jest](./tutorial/chapter-4-unit-and-snapshot-testing-with-jest)
 - [Chapter 5: E2E testing with Cypress](./tutorial/chapter-5-e2e-testing-with-cypress)
 
