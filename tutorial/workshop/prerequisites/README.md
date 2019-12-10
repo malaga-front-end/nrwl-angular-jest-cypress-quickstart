@@ -6,13 +6,19 @@ It's important to download all dependencies and creating the workspace before co
 
 Download LTS version of NodeJS in: https://nodejs.org/en/download/
 
+After installing NodeJS, you will be ready to install Angular CLI and Nx.
+
 ## Angular CLI
+
+In your console, execute the following command:
 
 ```
 npm install -g @angular/cli
 ```
 
 ## Nx: 
+
+In your console, execute the following command:
 
 ```
 npm i -g @nrwl/nx
@@ -22,11 +28,13 @@ npm i -g @nrwl/nx
 
 Use the name ``myapp`` for your workspace in order to follow the workshop easier.
 
+In your console, execute the following command:
+
 ```
 npm init nx-workspace myapp
 ```
 
-You will need to answer a few questions to setup your application:
+Answer the questions that appear with the following:
 
 * <b>What to create in the new workspace?</b> angular (a workspace with a single angular application)
 * <b>Application Name?</b> myapp
