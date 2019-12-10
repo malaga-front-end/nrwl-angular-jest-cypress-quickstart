@@ -1,31 +1,18 @@
 # Diff 1: Basic Structure of Application
 
-Delete all content inside ``app.component.css``.
+Generate components with Angular CLI:
 
-<pre><b>app.component.spec.ts</b></pre>
-
-```typescript
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-
-describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      schemas: [ NO_ERRORS_SCHEMA ]
-    }).compileComponents();
-  }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
-});
+```
+ng generate component countries
 ```
 
-<br/>
+```
+ng generate component city
+```
+
+Delete all content inside ``app.component.css``.
+
+Add components to ``app.component.html``:
 
 <pre><b>app.component.html</b></pre>
 
@@ -35,6 +22,18 @@ describe('AppComponent', () => {
 ```
 
 <br/>
+
+Generate services with Angular CLI:
+
+```
+ng generate service countries/countries
+```
+
+```
+ng generate service shared
+```
+
+Inject services in ``countries.component.ts``:
 
 <pre><b>countries.component.ts</b></pre>
 
@@ -58,6 +57,8 @@ export class CountriesComponent implements OnInit {
 ```
 
 <br/>
+
+Inject service in ``city.component.ts``:
 
 <pre><b>city.component.ts</b></pre>
 
