@@ -1,4 +1,4 @@
-# Diff 1: Components & Services Created
+# Diff 1: Basic Structure of Application
 
 Delete all content inside ``app.component.css``.
 
