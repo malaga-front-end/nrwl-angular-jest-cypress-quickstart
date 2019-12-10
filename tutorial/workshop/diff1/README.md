@@ -1,6 +1,6 @@
 # Diff 1: Basic Structure of Application
 
-Generate components with Angular CLI:
+1) Generate components with Angular CLI:
 
 ```
 ng generate component countries
@@ -10,9 +10,9 @@ ng generate component countries
 ng generate component city
 ```
 
-Delete all content inside ``app.component.css``.
+2) Delete all content inside ``app.component.css``.
 
-Add components to ``app.component.html``:
+3) Add components to ``app.component.html``:
 
 <pre><b>app.component.html</b></pre>
 
@@ -23,7 +23,7 @@ Add components to ``app.component.html``:
 
 <br/>
 
-Generate services with Angular CLI:
+4) Generate services with Angular CLI:
 
 ```
 ng generate service countries/countries
@@ -33,7 +33,7 @@ ng generate service countries/countries
 ng generate service shared
 ```
 
-Inject services in ``countries.component.ts``:
+5) Inject services in ``countries.component.ts``:
 
 <pre><b>countries.component.ts</b></pre>
 
@@ -58,7 +58,7 @@ export class CountriesComponent implements OnInit {
 
 <br/>
 
-Inject service in ``city.component.ts``:
+6) Inject service in ``city.component.ts``:
 
 <pre><b>city.component.ts</b></pre>
 
