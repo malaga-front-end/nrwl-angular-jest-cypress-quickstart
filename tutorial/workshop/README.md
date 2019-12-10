@@ -1,12 +1,16 @@
-# JSDay Canarias 2019 Workshop Utils
+# GDG DevFest Málaga '19 Workshop Utils
 
 Here you will find some useful stuff to follow the workshop.
 
+## Pre-requisites
+
+Click [here](./prerequisites) to check what you need to install before starting.
+
 ## Diff files
 
-If at any point of this workshop you get lost, check this diff files to see how the components and services are evolving during the different phases of development. Don't hesitate to copy & paste any of the files if you get stucked!
+If at any point of this workshop you get lost, check this diff files to see how components and services evolve during the different phases of development. Don't hesitate to copy & paste any of the files if you get stucked!
 
-* [Diff 1: Components & Services Created](./diff1)
+* [Diff 1: Basic structure of application](./diff1)
 * [Diff 2: Show List of Countries](./diff2)
 * [Diff 3: App Completed](./diff3)
 * [Diff 4: Unit & Snapshot Tests with Jest](./diff4)
