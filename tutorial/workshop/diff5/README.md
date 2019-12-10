@@ -1,5 +1,7 @@
 # Diff 5: E2E Tests with Cypress
 
+1) E2E test with mocked response:
+
 <pre><b>app.spec.ts</b></pre>
 
 ```typescript

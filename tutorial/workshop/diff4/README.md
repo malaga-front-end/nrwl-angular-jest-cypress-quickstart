@@ -1,5 +1,6 @@
 # Diff 4: Unit & Snapshot Tests with Jest
 
+1) Add ``NO_ERRORS_SCHEMA`` to prevent render the content of ``CountriesComponent`` and ``CityComponent`` inside ``AppComponent`` for the unit tests:
 
 <pre><b>app.component.spec.ts</b></pre>
 
@@ -23,7 +24,8 @@ describe('AppComponent', () => {
   });
 });
 ```
-<br/>
+
+2) Test the service behaviour:
 
 <pre><b>countries.service.spec.ts</b></pre>
 
@@ -56,7 +58,7 @@ describe('CountriesService', () => {
 });
 ```
 
-<br/>
+3) Test the component behaviour:
 
 <pre><b>countries.component.spec.ts</b></pre>
 

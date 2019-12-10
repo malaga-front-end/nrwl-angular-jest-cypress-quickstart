@@ -1,5 +1,7 @@
 # Diff 3: App Completed
 
+1) Send messages with ``Subject`` and expose it as an ``Observable`` to be able to subscribe and receive those messages:
+
 <pre><b>shared.service.ts</b></pre>
 
 ```typescript
@@ -23,6 +25,8 @@ export class SharedService {
   }
 }
 ```
+
+2) Create a method to send the city name in the component:
 
 <pre><b>countries.component.ts</b></pre>
 
@@ -54,7 +58,7 @@ export class CountriesComponent implements OnInit {
 }
 ```
 
-<br/>
+3) Send the capital name on ``click`` event:
 
 <pre><b>countries.component.html</b></pre>
 
@@ -64,7 +68,7 @@ export class CountriesComponent implements OnInit {
 </ul>
 ```
 
-<br/>
+4) Add CSS styles to beautify the component:
 
 <pre><b>city.component.css</b></pre>
 
@@ -92,7 +96,7 @@ h1 {
 }
 ```
 
-<br/>
+5) Create a method that returns the city ``Observable``:
 
 <pre><b>city.component.ts</b></pre>
 
@@ -118,7 +122,7 @@ export class CityComponent implements OnInit {
 }
 ```
 
-<br/>
+6) Subscribe to the ``Observable`` with pipe ``async`` to receive city messages and print them in ``h1`` tag: 
 
 <pre><b>city.component.html</b></pre>
 
