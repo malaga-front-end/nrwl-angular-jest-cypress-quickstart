@@ -1,5 +1,7 @@
 # Diff 2: Show List of Countries
 
+1) Add ``HttpClientModule`` to ``app.module.ts``:
+
 <pre><b>app.module.ts</b></pre>
 
 ```typescript
@@ -20,7 +22,7 @@ import { CityComponent } from './city/city.component';
 export class AppModule {}
 ```
 
-<br/>
+2) Create an interface for the country:
 
 <pre><b>country.ts</b></pre>
 
@@ -31,7 +33,7 @@ export interface Country {
 }
 ```
 
-<br/>
+3) Create a method ``getCountries`` to do the GET request:
 
 <pre><b>countries.service.ts</b></pre>
 
@@ -55,7 +57,8 @@ export class CountriesService {
   }
 }
 ```
-<br/>
+
+4) Call ``getCountries()`` on component initialization and save the result in ``countries$``:
 
 <pre><b>countries.component.ts</b></pre>
 
@@ -82,7 +85,8 @@ export class CountriesComponent implements OnInit {
   }
 }
 ```
-<br/>
+
+5) Do a ``*ngFor`` loop and subscribe with pipe ``async`` to print the results.
 
 <pre><b>countries.component.html</b></pre>
 
@@ -91,7 +95,8 @@ export class CountriesComponent implements OnInit {
   <li *ngFor="let country of countries$ | async">{{ country.name }}</li>
 </ul>
 ```
-<br/>
+
+6) Copy the CSS styles to ``countries.component.css`` to beautify the list:
 
 <pre><b>countries.component.css</b></pre>
 
