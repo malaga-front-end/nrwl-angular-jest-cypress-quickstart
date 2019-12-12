@@ -16,15 +16,25 @@ If at any point of this workshop you get lost, check this diff files to see how 
 * [Diff 4: Unit & Snapshot Tests with Jest](./diff4)
 * [Diff 5: E2E Tests with Cypress](./diff5)
 
-## Fake endpoint url
+## Endpoint url (use UMA Wi-Fi)
+
+Note: correct IP will be added during the event.
 
 http://localhost:3000/countries
 
-## CSS File for CountriesComponent
+## Using your own internet connection? Use json-server!
 
-[countries.component.css](../chapter-2-developing-our-app/countries.component.css)
+JSON Server is a simple project that helps you to setup a REST API with CRUD operations really fast. JSON Server is available as a NPM package. The installation can be done using ``npm``:
 
-## CSS File for CityComponent
+```
+npm install -g json-server
+```
 
-[city.component.css](../chapter-2-developing-our-app/city.component.css)
+Now, execute the following command from this project's root folder:
+
+```
+json-server tutorial/chapter-2-developing-our-app/db.json 
+```
+
+Open your browser and go to http://localhost:3000/countries. You will see a list of countries in JSON format.
 
