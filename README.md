@@ -2,6 +2,10 @@
 
 # Create your Angular app and test it with Jest and Cypress
 
+# GDG DevFest Málaga '19 Workshop
+
+If you're attending today to GDG DevFest Málaga '19, please click [here](./tutorial/workshop) to follow the workshop.
+
 ## Introduction
 
 This tutorial wants to be an introduction to some of the modern tools that makes developers' life easier. We will make an overview of:
