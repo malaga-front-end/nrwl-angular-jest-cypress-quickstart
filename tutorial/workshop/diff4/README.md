@@ -53,7 +53,7 @@ describe('CountriesService', () => {
   it('should call httpClient.get with the expected url', () => {
     countriesService.getCountries();
 
-    expect(httpClient.get).toHaveBeenCalledWith('http://localhost:3000/countries');
+    expect(httpClient.get).toHaveBeenCalledWith('http://192.168.144.220:3000/countries');
   });
 });
 ```

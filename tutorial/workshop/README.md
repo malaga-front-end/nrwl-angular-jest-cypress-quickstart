@@ -18,9 +18,7 @@ If at any point of this workshop you get lost, check this diff files to see how 
 
 ## Endpoint url (use UMA Wi-Fi)
 
-Note: correct IP will be added during the event.
-
-http://localhost:3000/countries
+http://192.168.144.220:3000/countries
 
 ## Using your own internet connection? Use json-server!
 
