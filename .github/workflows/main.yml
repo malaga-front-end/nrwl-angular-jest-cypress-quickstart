@@ -7,6 +7,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
+      - name: Install
+        run: | 
+          npm install
+
       - name: Cypress run
         run: |
           npm start -- --port 4200 &
