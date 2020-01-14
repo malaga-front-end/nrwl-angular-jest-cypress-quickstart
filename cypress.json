@@ -2,7 +2,7 @@
   "fileServerFolder": ".",
   "fixturesFolder": "./apps/myapp-e2e/src/fixtures",
   "integrationFolder": "./apps/myapp-e2e/src/integration",
-  "pluginsFile": "./apps/myapp-e2e/src/plugins/index",
+  "pluginsFile": "false",
   "supportFile": false,
   "video": true,
   "videosFolder": "./dist/cypress/apps/myapp-e2e/videos",
