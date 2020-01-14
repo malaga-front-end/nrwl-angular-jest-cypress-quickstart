@@ -10,7 +10,7 @@ jobs:
           
       - name: Unit tests
         run: | 
-          npx jest
+          npm run test
 
       - name: E2E tests
         run: |
