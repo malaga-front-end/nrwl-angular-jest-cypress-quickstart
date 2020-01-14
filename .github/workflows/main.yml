@@ -4,14 +4,15 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
       - name: Install
         run: | 
           npm install
+          
+      - name: Unit tests
+        run: | 
+          npm test
 
-      - name: Cypress run
+      - name: E2E tests
         run: |
           npm start -- --port 4200 &
           npx cypress run --env false
