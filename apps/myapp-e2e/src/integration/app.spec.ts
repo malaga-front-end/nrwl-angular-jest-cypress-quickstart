@@ -6,7 +6,7 @@ describe('myapp', () => {
       url: '/countries',    // that have a URL that matches '/countries'
       response: [{name: 'Spain', capital: 'Madrid'}, {name: 'France', capital: 'Paris'}]        // and force the response to be this one
     });
-    cy.visit('/');
+    cy.visit('http://localhost:4200');
   });
 
   it('should display city when clicking on country', () => {
