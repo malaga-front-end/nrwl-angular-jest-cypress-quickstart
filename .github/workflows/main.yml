@@ -7,12 +7,9 @@ jobs:
       - name: Install
         run: | 
           npm install
-          
-      - name: Unit tests
-        run: | 
-          npm run test
 
       - name: E2E tests
         run: |
           npm start -- --port 4200 &
+          npm test &
           npx cypress run --env false
