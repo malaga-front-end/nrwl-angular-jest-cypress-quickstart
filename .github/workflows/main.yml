@@ -9,5 +9,5 @@ jobs:
 
       - name: Cypress run
         run: |
-          npm start &
+          npm start -- --port 4200 &
           npx cypress run --env false
