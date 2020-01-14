@@ -10,6 +10,11 @@ jobs:
       - name: Install
         run: | 
           npm install
+          
+      - name: Jest run
+        run: |
+          npm test
+          
       - name: Cypress run
         run: |
           npm start -- --port 4200 &
