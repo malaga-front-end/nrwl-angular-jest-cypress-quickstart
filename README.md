@@ -2,9 +2,7 @@
 
 # Create your Angular app and test it with Jest and Cypress
 
-# GDG DevFest Málaga '19 Workshop
-
-If you're attending today to GDG DevFest Málaga '19, please click [here](./tutorial/workshop) to follow the workshop.
+![](https://github.com/malaga-front-end/nrwl-angular-jest-cypress-quickstart/workflows/Continuous%20Integration/badge.svg)
 
 ## Introduction
 
