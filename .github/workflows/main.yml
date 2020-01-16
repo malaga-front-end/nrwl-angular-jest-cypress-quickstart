@@ -1,4 +1,4 @@
-name: Unit & E2E Tests
+name: Continuous Integration
 on: [push]
 jobs:
   cypress-run:
