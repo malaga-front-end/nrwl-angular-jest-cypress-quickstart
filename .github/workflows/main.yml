@@ -1,4 +1,4 @@
-name: CI
+name: Unit & E2E Tests
 on: [push]
 jobs:
   cypress-run:
