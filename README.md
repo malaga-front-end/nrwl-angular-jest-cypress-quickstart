@@ -33,10 +33,10 @@ By the end of this tutorial, you should be able to:
 * Create new components and services automatically with Angular CLI.
 * Do an HTTP request with Angular.
 * Communicate Angular Components via a shared service.
-* Unit testing components and services with Jest.
-* Easy mocking with Jest.
-* Snapshot testing with Jest.
-* Simple E2E tests with Cypress.
+* Unit test components and services with Jest.
+* Mock services easily using Jest.
+* Do your first Snapshot test with Jest.
+* Do simple E2E/Integration tests with Cypress.
 * Overview the test runner of Cypress.
 
 ## Found an issue?
