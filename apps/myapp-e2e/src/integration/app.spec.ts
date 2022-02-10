@@ -1,12 +1,8 @@
 describe('myapp', () => {
   before(() => {
-    cy.server();           // enable response stubbing
-    cy.route({
-      method: 'GET',      // Route all GET requests
-      url: '/countries',    // that have a URL that matches '/countries'
-      response: [{name: 'Spain', capital: 'Madrid'}, {name: 'France', capital: 'Paris'}]        // and force the response to be this one
-    });
-    cy.visit('http://localhost:4200');
+    // Intercept all GET request that have an URL that matches /countries and force the response to be this one
+    cy.intercept('GET', '/countries', [{name: 'Spain', capital: 'Madrid'}, {name: 'France', capital: 'Paris'}]);
+    cy.visit('/');
   });
 
   it('should display city when clicking on country', () => {

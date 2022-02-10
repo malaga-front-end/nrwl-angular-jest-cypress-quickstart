@@ -2,12 +2,12 @@
 
 exports[`CountriesComponent should render a list of countries 1`] = `
 <myapp-countries
+  __ngContext__={[Function LRootView]}
   countries$={[Function Observable]}
   countriesService={[Function CountriesService]}
   sharedService={[Function SharedService]}
 >
   <ul>
-    
     <li>
       Spain
     </li>

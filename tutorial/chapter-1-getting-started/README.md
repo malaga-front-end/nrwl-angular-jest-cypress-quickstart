@@ -41,7 +41,7 @@ Nx is a set of extensible dev tools for monorepos. With Nx, you can:
 Install Nx using ``npm``package manager:
 
 ```
-npm i -g @nrwl/nx
+npm install -g nx
 ```
 
 ## Getting Started
@@ -49,14 +49,16 @@ npm i -g @nrwl/nx
 ### Create your workspace
 
 ```
-npm init nx-workspace myapp
+npx create-nx-workspace@latest
 ```
 
 You will need to answer a few questions to setup your application:
 
+* Workspace name? myapp
 * What to create in the new workspace? angular (a workspace with a single angular application)
 * Application Name? myapp
 * Default stylesheet format? CSS
+* Use Nx Cloud? No
 
 It will start to download and setup your initial app. Jest (Unit testing) and Cypress (E2E) dependencies will be automatically added.
 
@@ -79,7 +81,7 @@ ng test
 To execute the e2e tests of the application:
 
 ```
-ng e2e
+ng e2e myapp-e2e
 ```
 
 After installing all needed tools, you're ready to start creating your app!

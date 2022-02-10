@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CountriesComponent } from './countries.component';
 import { CountriesService } from './countries.service';
 import { SharedService } from '../shared.service';
-import { of } from 'rxjs/internal/observable/of';
+import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
 jest.mock('./countries.service');
@@ -15,7 +15,7 @@ describe('CountriesComponent', () => {
   let countriesService: CountriesService;
   let sharedService: SharedService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CountriesComponent ],
       providers: [ CountriesService, SharedService ]
@@ -24,8 +24,8 @@ describe('CountriesComponent', () => {
   }));
 
   beforeEach(() => {
-    countriesService = TestBed.get(CountriesService);
-    sharedService = TestBed.get(SharedService);
+    countriesService = TestBed.inject(CountriesService);
+    sharedService = TestBed.inject(SharedService);
 
     jest.spyOn(countriesService, 'getCountries').mockReturnValue(of([
       { name: 'Spain', capital: 'Madrid' },

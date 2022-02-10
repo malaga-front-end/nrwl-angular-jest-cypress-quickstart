@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CityComponent } from './city.component';
 import { SharedService } from '../shared.service';
@@ -11,7 +11,7 @@ describe('CityComponent', () => {
   let fixture: ComponentFixture<CityComponent>;
   let sharedService: SharedService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CityComponent ],
       providers: [ SharedService ]
@@ -20,7 +20,7 @@ describe('CityComponent', () => {
   }));
 
   beforeEach(() => {
-    sharedService = TestBed.get(SharedService);
+    sharedService = TestBed.inject(SharedService);
     jest.spyOn(sharedService, 'getCity').mockReturnValue(of('Madrid'));
     fixture = TestBed.createComponent(CityComponent);
     component = fixture.componentInstance;

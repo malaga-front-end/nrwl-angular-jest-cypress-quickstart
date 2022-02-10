@@ -5,10 +5,9 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-
   private subject: Subject<string> = new Subject<string>();
   private city$: Observable<string> = this.subject.asObservable();
-
+    
   sendCity(city: string) {
     this.subject.next(city);
   }
@@ -16,5 +15,4 @@ export class SharedService {
   getCity() {
     return this.city$;
   }
-
 }

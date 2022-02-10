@@ -34,7 +34,7 @@ As you can see, we use ``get(selector)`` to get any element in the app. Then, if
 Now, we need to execute our e2e tests in watch mode. 
 
 ```
-ng e2e --watch
+ng e2e myapp-e2e --watch
 ```
 
 ![e2e]
@@ -68,12 +68,9 @@ With the code that we have developed before, we are calling the real endpoint. I
 ```diff
 describe('app', () => {
   beforeEach(() => {
-+   cy.server();           // enable response stubbing
-+   cy.route({
-+     method: 'GET',      // Route all GET requests
-+     url: '/countries',    // that have a URL that matches '/countries'
-+     response: [{name: 'Spain', capital: 'Madrid'}]        // and force the response to be this one
-+   });
++    // Intercept all GET request that have an URL that matches /countries and force the response to be this one
++   cy.intercept('GET', '/countries', [{name: 'Spain', capital: 'Madrid'}, {name: 'France', capital: 'Paris'}]);
+
     cy.visit('/');
   });
 
@@ -84,9 +81,9 @@ describe('app', () => {
 });
 ```
 
-First, you need to enable response stubbing with ``cy.server()``. After that, you need to call ``cy.route()``. You need to provide some parameters; the HTTP ``method``, the ``url``, and the response that you want to return in that case.
+You just need to call ``cy.intercept()`` and provide some parameters; the HTTP ``method``, the ``url``, and the response that you want to return in that case.
 
-If you check Cypress Test Runner, you can check that the stubbed responses have a flag that say "Stubbed: yes".
+If you go to the Cypress Test Runner, and you expand the ROUTES section, you can check that the stubbed responses have a flag that say "Stubbed: yes".
 
 ![stub]
 

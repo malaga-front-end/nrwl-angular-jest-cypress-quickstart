@@ -2,6 +2,7 @@
 
 exports[`CityComponent should render a city 1`] = `
 <myapp-city
+  __ngContext__={[Function LRootView]}
   sharedService={[Function SharedService]}
 >
   <h1>

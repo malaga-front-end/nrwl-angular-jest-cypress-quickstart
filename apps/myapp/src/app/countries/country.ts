@@ -1,4 +1,4 @@
 export interface Country {
-  name: string;
-  capital: string;
+    name: string;
+    capital: string;
 }

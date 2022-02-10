@@ -10,7 +10,7 @@ export class CityComponent implements OnInit {
 
   constructor(private sharedService: SharedService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   getCity() {

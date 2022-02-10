@@ -2,8 +2,6 @@
 
 # Create your Angular app and test it with Jest and Cypress
 
-![](https://github.com/malaga-front-end/nrwl-angular-jest-cypress-quickstart/workflows/Continuous%20Integration/badge.svg)
-
 ## Introduction
 
 This tutorial wants to be an introduction to some of the modern tools that makes developers' life easier. We will make an overview of:

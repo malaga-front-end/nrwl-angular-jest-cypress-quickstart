@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CountriesService } from './countries.service';
 import { Observable } from 'rxjs';
-import { Country } from './country';
 import { SharedService } from '../shared.service';
+import { CountriesService } from './countries.service';
+import { Country } from './country';
 
 @Component({
   selector: 'myapp-countries',
@@ -11,16 +11,18 @@ import { SharedService } from '../shared.service';
 })
 export class CountriesComponent implements OnInit {
 
-  countries$: Observable<Country[]>;
+  countries$!: Observable<Country[]>;
 
-  constructor(private countriesService: CountriesService, private sharedService: SharedService) { }
+  constructor(
+    private countriesService: CountriesService,
+    private sharedService: SharedService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.countries$ = this.countriesService.getCountries();
   }
 
   sendCity(city: string) {
     this.sharedService.sendCity(city);
   }
-
 }

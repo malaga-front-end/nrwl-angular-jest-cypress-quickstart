@@ -15,6 +15,26 @@ We will create a very simple app to demonstrate how easy is to add new component
 
 ## Creating the basic structure of the app
 
+### Remove auto-generated components
+
+Remove ``nx-welcome.component.ts`` file, and also remove ``NxWelcomeComponent`` from ``declarations`` array in app.module.ts.
+
+```diff
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+- declarations: [AppComponent, NxWelcomeComponent],
++ declarations: [AppComponent],
+  imports: [BrowserModule],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
 ### Generating components with Angular CLI
 
 To create our first component, we need to create a class for its behaviour, a template for its view, a CSS file for styling, and a test file to implement its unit tests. Of course, you need to annotate the component to indicate to Angular that the class should be treated as a component, initialize the unit tests with TestBed in the proper way... Do you think that we are going to do it by hand? No! We are going to use the power of Angular CLI to generate all that we have stated before with a single command line: 
@@ -45,7 +65,7 @@ Do you want to see your brand new components in your browser? Check the ``select
 <pre><b>app.component.html</b></pre>
 ```diff
 + <myapp-countries></myapp-countries>
-+ <myapp-city></myapp-countries>
++ <myapp-city></myapp-city>
 ```
 
 If you go back to the browser, you will see that it has automatically reloaded to show your new components! 
@@ -183,9 +203,10 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CountriesComponent } from './countries/countries.component';
+import { CityComponent } from './city/city.component';
 
 @NgModule({
-  declarations: [AppComponent, CountriesComponent],
+  declarations: [AppComponent, CountriesComponent, CityComponent],
 - imports: [BrowserModule],
 + imports: [BrowserModule, HttpClientModule],
   providers: [],
@@ -238,7 +259,7 @@ import { SharedService } from '../shared.service';
 })
 export class CountriesComponent implements OnInit {
 
-+ countries$: Observable<Country[]>;
++ countries$!: Observable<Country[]>;
 
   constructor(
     private countriesService: CountriesService,

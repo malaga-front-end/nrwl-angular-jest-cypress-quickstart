@@ -1,21 +1,22 @@
 h1 {
-  font: 300 40px Helvetica, Verdana, sans-serif;
-  position: fixed;
-  top: 20px;
-  right: 0;
-  background: hsla(80, 90%, 40%, 0.7);
-  border: solid hsla(80, 90%, 40%, 0.5);
-  color: white;
-  text-align: right;
-  border-right: none;
-  padding: 0.5em 0.5em 0.5em 1em;
-  box-shadow: 0 1px 3px black;
-  border-radius: 3em 0 0 3em;
-  transition: bottom 0.5s ease-in-out;
-  animation-name: snackbar-show;
-  animation-duration: 0.5s;
-}
-
-@keyframes snackbar-show {
-  0%{ right: -200px; }
-}
+    font: 300 40px Helvetica, Verdana, sans-serif;
+    position: fixed;
+    top: 20px;
+    right: 0;
+    background: hsla(80, 90%, 40%, 0.7);
+    border: solid hsla(80, 90%, 40%, 0.5);
+    color: white;
+    text-align: right;
+    border-right: none;
+    padding: 0.5em 0.5em 0.5em 1em;
+    box-shadow: 0 1px 3px black;
+    border-radius: 3em 0 0 3em;
+    transition: bottom 0.5s ease-in-out;
+    animation-name: snackbar-show;
+    animation-duration: 0.5s;
+  }
+  
+  @keyframes snackbar-show {
+    0%{ right: -200px; }
+  }
+  

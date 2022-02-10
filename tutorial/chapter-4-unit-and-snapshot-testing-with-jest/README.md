@@ -44,7 +44,7 @@ describe('CountriesService', () => {
   });
   
   it('should be created', () => {
--   const service: CountriesService = TestBed.get(CountriesService);
+-   const service: CountriesService = TestBed.inject(CountriesService);
 -   expect(service).toBeTruthy();
 +   expect(countriesService).toBeTruthy();
   });
@@ -62,7 +62,7 @@ As we used Angular CLI to create our component we have an initial set up to star
 
 <pre><b>countries.component.spec.ts</b></pre>
 ```diff
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CountriesComponent } from './countries.component';
 
@@ -70,7 +70,7 @@ describe('CountriesComponent', () => {
   let component: CountriesComponent;
   let fixture: ComponentFixture<CountriesComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CountriesComponent ]
     })
@@ -105,7 +105,7 @@ Now we are going to get our services from the testing context and store them in 
 
 <pre><b>countries.component.spec.ts</b></pre>
 ```diff
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CountriesComponent } from './countries.component';
 import { CountriesService } from './countries.service';
@@ -120,7 +120,7 @@ describe('CountriesComponent', () => {
 +  let countriesService: CountriesService;
 +  let sharedService: SharedService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CountriesComponent ],
 +     providers: [ CountriesService, SharedService ]
@@ -129,8 +129,8 @@ describe('CountriesComponent', () => {
   }));
 
   beforeEach(() => {
-+    countriesService = TestBed.get(CountriesService);
-+    sharedService = TestBed.get(SharedService);
++    countriesService = TestBed.inject(CountriesService);
++    sharedService = TestBed.inject(SharedService);
 
     fixture = TestBed.createComponent(CountriesComponent);
     component = fixture.componentInstance;
@@ -153,8 +153,8 @@ Now we can add the test to check that ``CountriesService.getCountries()`` has be
 ...
 
   beforeEach(() => {
-    countriesService = TestBed.get(CountriesService);
-    sharedService = TestBed.get(SharedService);
+    countriesService = TestBed.inject(CountriesService);
+    sharedService = TestBed.inject(SharedService);
 
 +   jest.spyOn(countriesService, 'getCountries').mockReturnValue(of([
 +     { name: 'Spain', capital: 'Madrid' },
@@ -193,8 +193,8 @@ describe('CountriesComponent', () => {
 ...
 
   beforeEach(() => {
-    countriesService = TestBed.get(CountriesService);
-    sharedService = TestBed.get(SharedService);
+    countriesService = TestBed.inject(CountriesService);
+    sharedService = TestBed.inject(SharedService);
 
     jest.spyOn(countriesService, 'getCountries').mockReturnValue(of([
       { name: 'Spain', capital: 'Madrid' },
